@@ -1,12 +1,15 @@
 package com.idat.MayoServicioPrueba.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Table(name="Items")
+@Table(name="items")
 @Entity
 public class Items {
 
@@ -16,6 +19,18 @@ public class Items {
 	private String item;
 	private Integer cantidad;
 	private Integer total;
+	
+	@ManyToOne
+	@JoinColumn(
+			name = "id_cliente",
+			nullable = false,
+			unique = true,
+			foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_cliente) references clientes(id_cliente) ")
+)
+			
+	//varios items va a tener un unico cliente			
+	private Cliente cliente;
+	
 	public Integer getIditem() {
 		return iditem;
 	}
