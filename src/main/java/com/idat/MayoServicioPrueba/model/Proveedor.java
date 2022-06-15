@@ -1,5 +1,8 @@
 package com.idat.MayoServicioPrueba.model;
 
+import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -19,7 +22,7 @@ public class Proveedor {
 	private String proveedor;
 	private String direccion;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_producto",
 		nullable=false,
 		unique=true,
@@ -45,6 +48,31 @@ public class Proveedor {
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	public Productos getProducto() {
+		return producto;
+	}
+	public void setProducto(Productos producto) {
+		this.producto = producto;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(idProveedor);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Proveedor other = (Proveedor) obj;
+		return Objects.equals(idProveedor, other.idProveedor);
+	}
+	@Override
+	public String toString() {
+		return "Proveedor [idProveedor=" + idProveedor + "]";
 	}
 	
 	

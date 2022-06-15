@@ -82,6 +82,12 @@ public class Productos {
 	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
 	
 	
 }
